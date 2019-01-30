@@ -14,14 +14,15 @@ resources:
       clean: false
 
 jobs:
-  - job:
-      steps:
+  - job: install
+    steps:
       - task: NodeTool@0
         inputs:
           versionSpec: '11.x'
       - script: npm install
         displayName: install
   - job: test_
+    dependsOn: install
     pool:
       vmImage: 'Ubuntu-16.04'
     strategy:
